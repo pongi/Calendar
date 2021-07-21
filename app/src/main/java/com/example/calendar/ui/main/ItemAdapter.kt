@@ -1,5 +1,6 @@
-package com.example.calendar.ui
+package com.example.calendar.ui.main
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,17 +9,21 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.calendar.R
-import com.example.calendar.model.Item
+import com.example.calendar.model.DateItem
+import java.util.*
 
-class ItemAdapter : ListAdapter<Item, ItemAdapter.ItemViewHolder>(ItemDiffCallback) {
+class ItemAdapter : ListAdapter<DateItem, ItemAdapter.ItemViewHolder>(ItemDiffCallback) {
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val dayLabel = itemView.findViewById<TextView>(R.id.day)
         private val dayOfWeekLable = itemView.findViewById<TextView>(R.id.day_of_week)
-        fun bind(item: Item) {
-            dayLabel.text = item.day.toString()
-            dayOfWeekLable.text = item.dayOfWeek.toString()
+        fun bind(item: DateItem) {
+            dayLabel.text = item.calendar.get(Calendar.DAY_OF_MONTH).toString()
+            dayOfWeekLable.text = item.calendar.get(Calendar.DAY_OF_WEEK).toString()
 
+            if (item.today) {
+                itemView.setBackgroundColor(Color.RED)
+            }
         }
     }
 
@@ -31,13 +36,13 @@ class ItemAdapter : ListAdapter<Item, ItemAdapter.ItemViewHolder>(ItemDiffCallba
         holder.bind(getItem(position))
     }
 
-    object ItemDiffCallback : DiffUtil.ItemCallback<Item>() {
-        override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
+    object ItemDiffCallback : DiffUtil.ItemCallback<DateItem>() {
+        override fun areItemsTheSame(oldItem: DateItem, newItem: DateItem): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
-            return oldItem.date.time == newItem.date.time
+        override fun areContentsTheSame(oldItem: DateItem, newItem: DateItem): Boolean {
+            return oldItem.calendar.time == newItem.calendar.time
         }
     }
 }
