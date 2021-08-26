@@ -13,6 +13,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
 
         val viewModel: MainViewModel by viewModels()
-        //aaaa
+        //test
     }
 }
