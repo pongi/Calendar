@@ -18,10 +18,10 @@ class DateAdapter : ListAdapter<DateItem, DateAdapter.ItemViewHolder>(ItemDiffCa
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val dayLabel = itemView.findViewById<TextView>(R.id.day)
-        private val dayOfWeekLable = itemView.findViewById<TextView>(R.id.day_of_week)
+        private val dayOfWeekLabel = itemView.findViewById<TextView>(R.id.day_of_week)
         fun bind(item: DateItem) {
             dayLabel.text = item.calendar.get(Calendar.DAY_OF_MONTH).toString()
-            dayOfWeekLable.text = item.calendar.get(Calendar.DAY_OF_WEEK).toString()
+            dayOfWeekLabel.text = item.calendar.get(Calendar.DAY_OF_WEEK).toString()
 
             if (item.today) {
                 itemView.setBackgroundColor(Color.RED)
