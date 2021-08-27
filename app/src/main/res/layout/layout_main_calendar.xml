@@ -6,42 +6,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <ImageView
         android:id="@+id/prev"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="prev"
+        android:src="@drawable/ic_baseline_arrow_circle_up_24"
         app:layout_constraintBottom_toBottomOf="@id/month_name"
         app:layout_constraintEnd_toStartOf="@id/month_name"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.25" />
+        app:layout_constraintTop_toTopOf="@id/month_name"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/month_name"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:gravity="center"
-        android:text="month_name"
+        android:padding="8dp"
         app:layout_constraintBottom_toTopOf="@id/card"
         app:layout_constraintEnd_toStartOf="@id/next"
         app:layout_constraintStart_toEndOf="@id/prev"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="month_name" />
 
-    <TextView
+    <ImageView
         android:id="@+id/next"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="next"
+        android:src="@drawable/ic_baseline_arrow_circle_down_24"
         app:layout_constraintBottom_toBottomOf="@id/month_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/month_name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.25" />
+        app:layout_constraintTop_toTopOf="@id/month_name"
+        tools:ignore="ContentDescription" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"

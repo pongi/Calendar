@@ -25,6 +25,8 @@ class DateAdapter : ListAdapter<DateItem, DateAdapter.ItemViewHolder>(ItemDiffCa
 
             if (item.today) {
                 itemView.setBackgroundColor(Color.RED)
+            } else {
+                itemView.setBackgroundColor(0)
             }
         }
     }

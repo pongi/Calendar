@@ -2,6 +2,7 @@ package com.example.calendar.ui.main
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -24,17 +25,17 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
 
     lateinit var currentMonth: TextView
-    lateinit var nextMonth: TextView
-    lateinit var prevMonth: TextView
+    lateinit var nextMonth : ImageView
+    lateinit var prevMonth : ImageView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         currentMonth = view.findViewById(R.id.month_name)
-        nextMonth = view.findViewById<TextView>(R.id.next)
+        nextMonth = view.findViewById(R.id.next)
         prevMonth = view.findViewById(R.id.prev)
 
-        nextMonth.setOnClickListener { viewModel.input("next") }
-        prevMonth.setOnClickListener { viewModel.input("prev") }
+        nextMonth.setOnClickListener { viewModel.moveToMonth("next") }
+        prevMonth.setOnClickListener { viewModel.moveToMonth("prev") }
 
         val adapter = DateAdapter()
         adapter.listener = object : DateAdapter.OnItemClickListener {
@@ -49,10 +50,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         viewModel.itemList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
-        viewModel.inputText.observe(viewLifecycleOwner) {
+        viewModel.currentMonth.observe(viewLifecycleOwner) {
             currentMonth.text = it
-            nextMonth.text = (it.toInt() + 1).toString()
-            prevMonth.text = (it.toInt() - 1).toString()
         }
     }
 }
