@@ -20,7 +20,7 @@ class MainFragment : Fragment() {
     // from the fragment-ktx artifact
     private val mainViewModel: MainViewModel by activityViewModels()
 
-    private lateinit var dateAdapter: DateAdapter
+    private lateinit var calendarAdapter: CalendarAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,15 +29,15 @@ class MainFragment : Fragment() {
         _binding = MainFragmentBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = this@MainFragment.viewLifecycleOwner
             viewModel = mainViewModel
-            monthlyTable.apply {
-                dateAdapter = DateAdapter()
-                dateAdapter.listener = object : DateAdapter.OnItemClickListener {
+            calendarLayout.monthlyTable.apply {
+                calendarAdapter = CalendarAdapter()
+                calendarAdapter.listener = object : CalendarAdapter.OnItemClickListener {
                     override fun onItemClicked(view: View, item: DateItem, position: Int) {
                         val action = MainFragmentDirections.actionMainToPlan(item)
                         view.findNavController().navigate(action)
                     }
                 }
-                adapter = dateAdapter
+                adapter = calendarAdapter
             }
         }
         return binding.root
@@ -46,7 +46,7 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainViewModel.itemList.observe(viewLifecycleOwner) {
-            dateAdapter.submitList(it)
+            calendarAdapter.submitList(it)
         }
     }
 }

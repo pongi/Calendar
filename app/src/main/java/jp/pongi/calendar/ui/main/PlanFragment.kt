@@ -12,7 +12,7 @@ import java.util.*
 class PlanFragment : Fragment(R.layout.plan_fragment) {
 
     private val args: PlanFragmentArgs by navArgs()
-    private val formatter = SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPAN)
+    private val formatter = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.JAPAN)
 
     lateinit var startDateEdit: EditText
     lateinit var endDateEdit: EditText
@@ -20,7 +20,12 @@ class PlanFragment : Fragment(R.layout.plan_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // 開始日
         val start = args.item.calendar.clone() as Calendar
-        start.set(Calendar.HOUR_OF_DAY, Calendar.getInstance().get(Calendar.HOUR) + 1)
+        start.apply {
+            set(Calendar.HOUR_OF_DAY, Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + 1)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
         startDateEdit = view.findViewById(R.id.start_date)
         startDateEdit.setText(formatter.format(start.time))
 

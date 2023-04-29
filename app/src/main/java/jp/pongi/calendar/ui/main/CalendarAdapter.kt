@@ -12,7 +12,7 @@ import jp.pongi.calendar.R
 import jp.pongi.calendar.model.DateItem
 import java.util.*
 
-class DateAdapter : ListAdapter<DateItem, DateAdapter.ItemViewHolder>(ItemDiffCallback) {
+class CalendarAdapter : ListAdapter<DateItem, CalendarAdapter.ItemViewHolder>(ItemDiffCallback) {
 
     lateinit var listener: OnItemClickListener
 

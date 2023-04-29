@@ -60,6 +60,10 @@ class MainViewModel : ViewModel() {
         moveToMonth("next")
     }
 
+    fun moveToTodayMonth() {
+        getCalendar(today)
+    }
+
     fun moveToPrevMonth() {
         moveToMonth("prev")
     }
