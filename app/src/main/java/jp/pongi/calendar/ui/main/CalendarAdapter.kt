@@ -1,47 +1,33 @@
 package jp.pongi.calendar.ui.main
 
-import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import jp.pongi.calendar.R
+import jp.pongi.calendar.databinding.ItemDateBinding
 import jp.pongi.calendar.model.DateItem
-import java.util.*
 
 class CalendarAdapter : ListAdapter<DateItem, CalendarAdapter.ItemViewHolder>(ItemDiffCallback) {
 
-    lateinit var listener: (item: DateItem) -> Unit
+    lateinit var onItemClick: (item: DateItem) -> Unit
 
-    class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val dayLabel = itemView.findViewById<TextView>(R.id.day)
-        private val dayOfWeekLabel = itemView.findViewById<TextView>(R.id.day_of_week)
-        fun bind(item: DateItem) {
-            dayLabel.text = item.calendar.get(Calendar.DAY_OF_MONTH).toString()
-            dayOfWeekLabel.text = item.calendar.get(Calendar.DAY_OF_WEEK).toString()
+    class ItemViewHolder(private val binding: ItemDateBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-            if (item.today) {
-                itemView.setBackgroundColor(Color.RED)
-            } else {
-                itemView.setBackgroundColor(0)
-            }
+        fun bind(item: DateItem, onItemClick: (item: DateItem) -> Unit) {
+            binding.onItemClick = onItemClick
+            binding.item = item
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_date, parent, false)
-        return ItemViewHolder(view)
+        val binding = ItemDateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ItemViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val dateItem = getItem(position)
-        holder.bind(dateItem)
-        holder.itemView.setOnClickListener {
-            listener.invoke(dateItem)
-        }
+        holder.bind(getItem(position), onItemClick)
     }
 
     object ItemDiffCallback : DiffUtil.ItemCallback<DateItem>() {

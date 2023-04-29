@@ -30,7 +30,7 @@ class MainFragment : Fragment() {
             viewModel = mainViewModel
             calendarLayout.monthlyTable.apply {
                 calendarAdapter = CalendarAdapter()
-                calendarAdapter.listener = { item ->
+                calendarAdapter.onItemClick = { item ->
                         val action = MainFragmentDirections.actionMainToPlan(item)
                         findNavController().navigate(action)
                 }
