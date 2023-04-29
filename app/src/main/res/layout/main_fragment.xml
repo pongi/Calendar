@@ -59,13 +59,12 @@
             app:layout_constraintTop_toTopOf="@id/month_name"
             tools:ignore="ContentDescription" />
 
-        <include xmlns:bind="http://schemas.android.com/apk/res-auto"
+        <include
             android:id="@+id/calendar_layout"
             layout="@layout/layout_calendar"
-            bind:viewModel="@{viewModel}"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            bind:layout_constraintHeight_default="wrap"
+            app:layout_constraintHeight_default="wrap"
             app:layout_constraintTop_toBottomOf="@id/month_name"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
