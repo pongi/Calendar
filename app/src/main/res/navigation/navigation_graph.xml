@@ -6,7 +6,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.calendar.ui.main.MainFragment"
+        android:name="jp.pongi.calendar.ui.main.MainFragment"
         android:label="main_fragment"
         tools:layout="@layout/main_fragment" >
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/planFragment"
-        android:name="com.example.calendar.ui.main.PlanFragment"
+        android:name="jp.pongi.calendar.ui.main.PlanFragment"
         android:label="plan_fragment"
         tools:layout="@layout/plan_fragment">
         <argument
             android:name="item"
-            app:argType="com.example.calendar.model.DateItem"/>
+            app:argType="jp.pongi.calendar.model.DateItem"/>
 
     </fragment>
 </navigation>
