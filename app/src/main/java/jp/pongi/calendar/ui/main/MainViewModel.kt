@@ -37,13 +37,13 @@ class MainViewModel : ViewModel() {
         // 初週の月曜日
         val beginOfMonth = (current.clone() as Calendar).apply {
             set(year, month, 1)
-            add(Calendar.DAY_OF_MONTH, 1 - (get(Calendar.DAY_OF_WEEK)))
+            add(Calendar.DAY_OF_MONTH, 1 - get(Calendar.DAY_OF_WEEK))
         }
 
         // 最終週の土曜日+1週
         val endOfMonth = (current.clone() as Calendar).apply {
             set(year, month + 1, 0)
-            add(Calendar.DAY_OF_MONTH, 14 - (get(Calendar.DAY_OF_WEEK)))
+            add(Calendar.DAY_OF_MONTH, 7 - get(Calendar.DAY_OF_WEEK))
         }
 
         val tmp = beginOfMonth.clone() as Calendar
@@ -54,6 +54,14 @@ class MainViewModel : ViewModel() {
         }
         _itemList.postValue(items)
         _currentMonth.postValue((current.get(Calendar.MONTH) + 1).toString())
+    }
+
+    fun moveToNextMonth() {
+        moveToMonth("next")
+    }
+
+    fun moveToPrevMonth() {
+        moveToMonth("prev")
     }
 
     fun moveToMonth(text: String) {
