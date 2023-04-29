@@ -14,7 +14,7 @@ import java.util.*
 
 class CalendarAdapter : ListAdapter<DateItem, CalendarAdapter.ItemViewHolder>(ItemDiffCallback) {
 
-    lateinit var listener: OnItemClickListener
+    lateinit var listener: (item: DateItem) -> Unit
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val dayLabel = itemView.findViewById<TextView>(R.id.day)
@@ -40,7 +40,7 @@ class CalendarAdapter : ListAdapter<DateItem, CalendarAdapter.ItemViewHolder>(It
         val dateItem = getItem(position)
         holder.bind(dateItem)
         holder.itemView.setOnClickListener {
-            listener.onItemClicked(it, dateItem, position)
+            listener.invoke(dateItem)
         }
     }
 
@@ -52,9 +52,5 @@ class CalendarAdapter : ListAdapter<DateItem, CalendarAdapter.ItemViewHolder>(It
         override fun areContentsTheSame(oldItem: DateItem, newItem: DateItem): Boolean {
             return oldItem == newItem
         }
-    }
-
-    interface OnItemClickListener {
-        fun onItemClicked(view: View, item: DateItem, position: Int)
     }
 }

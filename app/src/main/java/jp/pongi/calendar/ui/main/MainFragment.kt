@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import jp.pongi.calendar.databinding.MainFragmentBinding
-import jp.pongi.calendar.model.DateItem
 
 class MainFragment : Fragment() {
     private var _binding: MainFragmentBinding? = null
@@ -31,11 +30,9 @@ class MainFragment : Fragment() {
             viewModel = mainViewModel
             calendarLayout.monthlyTable.apply {
                 calendarAdapter = CalendarAdapter()
-                calendarAdapter.listener = object : CalendarAdapter.OnItemClickListener {
-                    override fun onItemClicked(view: View, item: DateItem, position: Int) {
+                calendarAdapter.listener = { item ->
                         val action = MainFragmentDirections.actionMainToPlan(item)
-                        view.findNavController().navigate(action)
-                    }
+                        findNavController().navigate(action)
                 }
                 adapter = calendarAdapter
             }
