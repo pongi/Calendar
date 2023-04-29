@@ -22,7 +22,8 @@ class CalendarAdapter : ListAdapter<DateItem, CalendarAdapter.ItemViewHolder>(It
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val binding = ItemDateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = ItemDateBinding.inflate(inflater, parent, false)
         return ItemViewHolder(binding)
     }
 

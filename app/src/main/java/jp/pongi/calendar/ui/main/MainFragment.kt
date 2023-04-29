@@ -10,9 +10,9 @@ import androidx.navigation.findNavController
 import jp.pongi.calendar.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
+
     private var _binding: MainFragmentBinding? = null
-    // This property is only valid between onCreateView and
-// onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     // Use the 'by activityViewModels()' Kotlin property delegate

@@ -11,7 +11,7 @@
 
         <variable
             name="onItemClick"
-            type="Function1&lt;jp.pongi.calendar.model.DateItem, Unit>"/>
+            type="Function1&lt;jp.pongi.calendar.model.DateItem, Unit&gt;"/>
         <variable
             name="item"
             type="jp.pongi.calendar.model.DateItem" />
