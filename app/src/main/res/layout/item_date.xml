@@ -48,6 +48,7 @@
             android:includeFontPadding="false"
             android:text="@{item.dayOfMonth}"
             android:textSize="24sp"
+            android:textColor="@{item.thisMonth? @color/black : @color/gray}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -49,7 +49,9 @@ class MainViewModel : ViewModel() {
         val tmp = beginOfMonth.clone() as Calendar
         val items = mutableListOf<DateItem>()
         while (tmp.timeInMillis <= endOfMonth.timeInMillis) {
-            items.add(DateItem(tmp.clone() as Calendar, tmp.time == today.time))
+            val isToday = tmp.time == today.time
+            val isThisMonth = tmp.get(Calendar.MONTH) == month
+            items.add(DateItem(tmp.clone() as Calendar, isThisMonth, isToday ))
             tmp.add(Calendar.DAY_OF_MONTH, 1)
         }
         _itemList.postValue(items)
